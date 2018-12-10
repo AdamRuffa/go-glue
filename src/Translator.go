@@ -1,9 +1,4 @@
-package transl
-
-import (
-	"go-glue/src/gluetypes"
-	"go-glue/src/transl/impl"
-)
+package src
 
 /*
 
@@ -12,8 +7,8 @@ An interface for all go-glue translators.
 */
 
 type Translator interface {
-	Encode(gluetypes.Gum) (gluetypes.Raw, error)
-	Decode(gluetypes.Raw) (gluetypes.Gum, error)
+	Encode(Gum) (Raw, error)
+	Decode(Raw) (Gum, error)
 }
 
 const JsonEncoding = "application/json"
@@ -24,16 +19,16 @@ const UndefinedEncoding = "undefined"
 func NewTranslator(encoding string) Translator {
 	switch encoding {
 	case JsonEncoding:
-		return &impl.JsonTranslator{}
+		return &JsonTranslator{}
 	case ProtobufEncoding:
-		return &impl.ProtobufTranslator{}
+		return &ProtobufTranslator{}
 	case XmlEncoding:
 		fallthrough
 	case "text/xml":
-		return &impl.XmlTranslator{}
+		return &XmlTranslator{}
 	case UndefinedEncoding:
 		fallthrough
 	default:
-		return &impl.UndefinedTranslator{}
+		return &UndefinedTranslator{}
 	}
 }
