@@ -1,4 +1,4 @@
-package types
+package gluetypes
 
 import (
 	"go-glue/src/transl"
