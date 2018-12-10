@@ -1,2 +1,2 @@
 # go-glue
-A lightweight framework for simple Golang microservice interaction through functional interfaces
+A lightweight Golang microservice framework.  Made to easily "glue" microservices together through simple application discovery and functional interfaces.
