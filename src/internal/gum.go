@@ -12,10 +12,10 @@ A decoded representation of a glue call.
 */
 
 type gum interface {
-	unmarshal(*interface{}) error
-	getTranslator() translator
-	setTranslator(translator)
-	translate(...translator) (*raw, error)
+	Unmarshal(*interface{}) error
+	GetTranslator() translator
+	SetTranslator(translator)
+	Translate(...translator) (*raw, error)
 }
 
 type gumField struct {
@@ -30,26 +30,26 @@ type gumImpl struct {
 	translator *translator
 }
 
-const ROOT string = "/"
+func root() string { return "/" }
 
-func newGum() gum {
+func NewGum() gum {
 	root := &gumField{
-		new(string(ROOT)),
+		root(),
 		nil,
 		make(map[string]*gumField),
 		nil,
 	}
 	root.parent = root
-	defaultTranslator := newTranslator(UndefinedEncoding)
+	defaultTranslator := NewTranslator(UndefinedEncoding)
 	return &gumImpl{
 		root,
 		&defaultTranslator,
 	}
 }
 
-func (g gumImpl) getTranslator() translator           { return *g.translator }
-func (g gumImpl) setTranslator(translator translator) { g.translator = &translator }
-func (g gumImpl) unmarshal(object *interface{}) (e error) {
+func (g *gumImpl) GetTranslator() translator           { return *g.translator }
+func (g *gumImpl) SetTranslator(translator translator) { g.translator = &translator }
+func (g *gumImpl) Unmarshal(object *interface{}) (e error) {
 	gum := gum(g)
 	if object == nil {
 		e = errors.New("gum.unmarshal expects a nonnull object reference")
@@ -58,9 +58,9 @@ func (g gumImpl) unmarshal(object *interface{}) (e error) {
 	panic(gum)
 
 }
-func (g gumImpl) translate(...translator) (rawRef *raw, e error) {
+func (g *gumImpl) Translate(...translator) (rawRef *raw, e error) {
 	gum := gum(g)
-	translator := g.getTranslator()
+	translator := g.GetTranslator()
 	if translator == nil {
 		e = errors.New("gum.unmarshal expects translator to first be set")
 		return

@@ -12,20 +12,20 @@ type raw interface {
 	Translate() (gum, error)
 }
 
-func newRaw() raw {
+func NewRaw() raw {
 	return &rawImpl{}
 }
 
 type rawImpl struct{}
 
-func (rawImpl) GetTranslator() translator {
+func (raw *rawImpl) GetTranslator() translator {
 	panic("implement me")
 }
 
-func (rawImpl) SetTranslator(translator translator) {
+func (raw *rawImpl) SetTranslator(translator translator) {
 	panic("implement me")
 }
 
-func (rawImpl) Translate() (gum, error) {
+func (raw *rawImpl) Translate() (gum, error) {
 	panic("implement me")
 }

@@ -16,8 +16,8 @@ const XmlEncoding = "application/xml"
 const ProtobufEncoding = "application/protobuf"
 const UndefinedEncoding = "undefined"
 
-func newTranslator(encoding string) translator {
-	switch encoding {
+func NewTranslator(encodingScheme string) translator {
+	switch encodingScheme {
 	case JsonEncoding:
 		return &jsonTranslator{}
 	case ProtobufEncoding:
