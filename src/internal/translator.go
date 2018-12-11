@@ -1,4 +1,4 @@
-package src
+package internal
 
 /*
 
@@ -6,9 +6,9 @@ An interface for all go-glue translators.
 
 */
 
-type Translator interface {
-	Encode(Gum) (Raw, error)
-	Decode(Raw) (Gum, error)
+type translator interface {
+	Encode(gum) (raw, error)
+	Decode(raw) (gum, error)
 }
 
 const JsonEncoding = "application/json"
@@ -16,19 +16,19 @@ const XmlEncoding = "application/xml"
 const ProtobufEncoding = "application/protobuf"
 const UndefinedEncoding = "undefined"
 
-func NewTranslator(encoding string) Translator {
+func newTranslator(encoding string) translator {
 	switch encoding {
 	case JsonEncoding:
-		return &JsonTranslator{}
+		return &jsonTranslator{}
 	case ProtobufEncoding:
-		return &ProtobufTranslator{}
+		return &protobufTranslator{}
 	case XmlEncoding:
 		fallthrough
 	case "text/xml":
-		return &XmlTranslator{}
+		return &xmlTranslator{}
 	case UndefinedEncoding:
 		fallthrough
 	default:
-		return &UndefinedTranslator{}
+		return &undefinedTranslator{}
 	}
 }
