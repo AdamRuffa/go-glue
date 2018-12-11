@@ -2,10 +2,10 @@ package internal
 
 type jsonTranslator struct{}
 
-func (jsonTranslator) Encode(gum) (raw, error) {
+func (jsonTranslator) encode(gum *gum) (raw, error) {
 	panic("implement me")
 }
 
-func (jsonTranslator) Decode(raw) (gum, error) {
+func (jsonTranslator) decode(raw *raw) (gum, error) {
 	panic("implement me")
 }

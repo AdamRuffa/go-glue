@@ -2,10 +2,10 @@ package internal
 
 type protobufTranslator struct{}
 
-func (protobufTranslator) Encode(gum) (raw, error) {
+func (protobufTranslator) encode(gum *gum) (raw, error) {
 	panic("implement me")
 }
 
-func (protobufTranslator) Decode(raw) (gum, error) {
+func (protobufTranslator) decode(raw *raw) (gum, error) {
 	panic("implement me")
 }

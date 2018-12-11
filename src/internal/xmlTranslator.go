@@ -2,10 +2,10 @@ package internal
 
 type xmlTranslator struct{}
 
-func (xmlTranslator) Encode(gum) (raw, error) {
+func (xmlTranslator) encode(gum *gum) (raw, error) {
 	panic("implement me")
 }
 
-func (xmlTranslator) Decode(raw) (gum, error) {
+func (xmlTranslator) decode(raw *raw) (gum, error) {
 	panic("implement me")
 }

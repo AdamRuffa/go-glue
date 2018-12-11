@@ -7,8 +7,8 @@ An interface for all go-glue translators.
 */
 
 type translator interface {
-	Encode(gum) (raw, error)
-	Decode(raw) (gum, error)
+	encode(gum *gum) (raw, error)
+	decode(raw *raw) (gum, error)
 }
 
 const JsonEncoding = "application/json"
