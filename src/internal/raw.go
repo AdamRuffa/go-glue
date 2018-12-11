@@ -7,8 +7,6 @@ An interface and struct for raw data representation.
 */
 
 type raw interface {
-	GetTranslator() translator
-	SetTranslator(translator translator)
 	Translate() (gum, error)
 }
 
@@ -16,16 +14,22 @@ func NewRaw() raw {
 	return &rawImpl{}
 }
 
-type rawImpl struct{}
-
-func (raw *rawImpl) GetTranslator() translator {
-	panic("implement me")
+type rawImpl struct {
+	bytes          *[]byte
+	text           *string
+	encodingScheme *string
+	translator     *translator
 }
 
-func (raw *rawImpl) SetTranslator(translator translator) {
-	panic("implement me")
-}
+func (raw *rawImpl) getTranslator() translator           { return *raw.translator }
+func (raw *rawImpl) setTranslator(translator translator) { raw.translator = &translator }
+func (raw *rawImpl) resolveTranslator() {
+	translator := raw.getTranslator()
 
-func (raw *rawImpl) Translate() (gum, error) {
+	if translator == nil {
+
+	}
+}
+func (raw *rawImpl) Translate() (gum gum, e error) {
 	panic("implement me")
 }

@@ -2,10 +2,16 @@ package internal
 
 type jsonTranslator struct{}
 
-func (jsonTranslator) encode(gum *gum) (raw, error) {
+func (j *jsonTranslator) equals(other *translator) bool {
+	this := translator(j)
+	sameType := translatorEquals(&this, other)
+	return sameType
+}
+
+func (j *jsonTranslator) encode(gum *gum) (raw, error) {
 	panic("implement me")
 }
 
-func (jsonTranslator) decode(raw *raw) (gum, error) {
+func (j *jsonTranslator) decode(raw *raw) (gum, error) {
 	panic("implement me")
 }

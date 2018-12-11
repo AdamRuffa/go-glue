@@ -50,21 +50,21 @@ func NewGum() gum {
 func (g *gumImpl) GetTranslator() translator           { return *g.translator }
 func (g *gumImpl) SetTranslator(translator translator) { g.translator = &translator }
 func (g *gumImpl) Unmarshal(object *interface{}) (e error) {
-	gum := gum(g)
+	this := gum(g)
 	if object == nil {
 		e = errors.New("gum.unmarshal expects a nonnull object reference")
 		return
 	}
-	panic(gum)
+	panic(this)
 
 }
 func (g *gumImpl) Translate(...translator) (rawRef *raw, e error) {
-	gum := gum(g)
+	this := gum(g)
 	translator := g.GetTranslator()
 	if translator == nil {
 		e = errors.New("gum.unmarshal expects translator to first be set")
 		return
 	}
-	raw, e := translator.encode(&gum)
+	raw, e := translator.encode(&this)
 	return &raw, e
 }
